@@ -21,7 +21,7 @@ const NAV_ICON_JS_SCRIPT: &str = r#"
 #[derive(Props)]
 pub struct HeaderProps<'a> {
     title: &'a str,
-    current_view: &'a UseState<ViewName>,
+    view_name: &'a UseState<ViewName>,
 }
 
 pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
@@ -48,11 +48,11 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
             div {
                 id: "nav-icon",
                 onclick: move |_| {
-                    let current_view = *cx.props.current_view.get();
+                    let current_view = *cx.props.view_name.get();
                     if current_view == ViewName::Home {
-                        cx.props.current_view.set(ViewName::Settings);
+                        cx.props.view_name.set(ViewName::Settings);
                     } else {
-                        cx.props.current_view.set(ViewName::Home);
+                        cx.props.view_name.set(ViewName::Home);
                     }
                 },
                 span {}

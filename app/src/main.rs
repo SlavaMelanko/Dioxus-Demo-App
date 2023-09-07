@@ -3,11 +3,10 @@
 use dioxus::prelude::*;
 use dioxus_desktop::{Config, LogicalSize, WindowBuilder};
 
-use gui::components::Header;
-use gui::components::Home;
-use gui::components::Loading;
-use gui::components::Settings;
-use gui::ViewName;
+use gui::{
+    components::{Header, Home, Loading, Settings},
+    ViewName,
+};
 
 fn main() {
     let props = AppProps {};
@@ -25,11 +24,10 @@ fn main() {
 pub struct AppProps {}
 
 fn App(cx: Scope<AppProps>) -> Element {
-    println!("App");
+    println!("App"); // TODO: Use fern for logging https://docs.rs/fern/0.5.8/fern/#example-setup
 
-    let current_view = use_state(&cx, || ViewName::Loading);
-
-    println!("View: {:?}", current_view);
+    let view_name = use_state(&cx, || ViewName::Loading);
+    println!("View: {:?}", view_name);
 
     cx.render(rsx! {
         link { href:"https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap", rel:"stylesheet", }
@@ -37,13 +35,13 @@ fn App(cx: Scope<AppProps>) -> Element {
 
         Header {
             title: "Dioxus Demo",
-            current_view: current_view,
+            view_name: view_name,
         }
 
-        match *current_view.current() {
+        match *view_name.current() {
             ViewName::Loading => rsx! {
                 Loading {
-                    current_view: current_view
+                    view_name: view_name
                 }
             },
             ViewName::Home => rsx! {

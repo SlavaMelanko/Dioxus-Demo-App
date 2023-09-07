@@ -29,7 +29,7 @@ impl ToString for LoadingStage {
 
 #[derive(Props)]
 pub struct LoadingProps<'a> {
-    current_view: &'a UseState<ViewName>,
+    view_name: &'a UseState<ViewName>,
 }
 
 pub fn Loading<'a>(cx: Scope<'a, LoadingProps<'_>>) -> Element<'a> {
@@ -65,7 +65,7 @@ pub fn Loading<'a>(cx: Scope<'a, LoadingProps<'_>>) -> Element<'a> {
 
     // TODO: Doesn't work inside the future closure
     if *loading_stage.get() == LoadingStage::Done {
-        cx.props.current_view.set(ViewName::Home);
+        cx.props.view_name.set(ViewName::Home);
     }
 
     cx.render(rsx! {
