@@ -28,11 +28,11 @@ impl ToString for LoadingStage {
 }
 
 #[derive(Props)]
-pub struct LoadingProps<'a> {
+pub(crate) struct LoadingProps<'a> {
     view_name: &'a UseState<ViewName>,
 }
 
-pub fn Loading<'a>(cx: Scope<'a, LoadingProps<'_>>) -> Element<'a> {
+pub(crate) fn Loading<'a>(cx: Scope<'a, LoadingProps<'_>>) -> Element<'a> {
     let loading_stage = use_state(&cx, || LoadingStage::CheckingInternetConnection);
 
     trace!("Loading: {:?}", *loading_stage.get());

@@ -5,13 +5,7 @@ mod common;
 mod header;
 mod home;
 mod loading;
+mod main_window;
 mod settings;
 
-pub use crate::common::ViewName;
-
-pub mod components {
-    pub use crate::header::Header;
-    pub use crate::home::Home;
-    pub use crate::loading::Loading;
-    pub use crate::settings::Settings;
-}
+pub use crate::main_window::{MainWindow, MainWindowProps};

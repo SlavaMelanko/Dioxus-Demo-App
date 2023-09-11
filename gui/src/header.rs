@@ -19,12 +19,12 @@ const NAV_ICON_JS_SCRIPT: &str = r#"
     "#;
 
 #[derive(Props)]
-pub struct HeaderProps<'a> {
+pub(crate) struct HeaderProps<'a> {
     title: &'a str,
     view_name: &'a UseState<ViewName>,
 }
 
-pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
+pub(crate) fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
     let theme_img = use_state(&cx, || "gui/img/moon-32.png".to_string());
 
     cx.render(rsx!(
