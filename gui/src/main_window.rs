@@ -1,5 +1,3 @@
-#![allow(non_snake_case)]
-
 use dioxus::prelude::*;
 
 use crate::common::ViewName;
@@ -9,6 +7,7 @@ use crate::{header::Header, home::Home, loading::Loading, settings::Settings};
 #[derive(Props, PartialEq, Debug)]
 pub struct MainWindowProps {}
 
+#[allow(non_snake_case)]
 pub fn MainWindow(cx: Scope<MainWindowProps>) -> Element {
     trace!("MainWindow");
 

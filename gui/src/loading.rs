@@ -1,5 +1,3 @@
-#![allow(non_snake_case)]
-
 use dioxus::prelude::*;
 
 use crate::common::ViewName;
@@ -32,6 +30,7 @@ pub(crate) struct LoadingProps<'a> {
     view_name: &'a UseState<ViewName>,
 }
 
+#[allow(non_snake_case)]
 pub(crate) fn Loading<'a>(cx: Scope<'a, LoadingProps<'_>>) -> Element<'a> {
     let loading_stage = use_state(&cx, || LoadingStage::CheckingInternetConnection);
 

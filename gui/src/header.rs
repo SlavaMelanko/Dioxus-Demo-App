@@ -1,5 +1,3 @@
-#![allow(non_snake_case)]
-
 use dioxus::prelude::*;
 
 use crate::common::ViewName;
@@ -24,10 +22,11 @@ pub(crate) struct HeaderProps<'a> {
     view_name: &'a UseState<ViewName>,
 }
 
+#[allow(non_snake_case)]
 pub(crate) fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
     let theme_img = use_state(&cx, || "gui/img/moon-32.png".to_string());
 
-    cx.render(rsx!(
+    cx.render(rsx! {
         div {
             class: "header",
             div {
@@ -63,5 +62,5 @@ pub(crate) fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
         script {
             "{NAV_ICON_JS_SCRIPT}"
         }
-    ))
+    })
 }
