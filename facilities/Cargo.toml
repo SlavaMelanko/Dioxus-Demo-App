@@ -1,14 +1,11 @@
 [package]
-name = "gui"
+name = "facilities"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus = "0.4.0"
-dioxus-desktop = "0.4.0"
-tokio = { version = "1", features = ["full"] }
 log = "0.4"
-
-facilities = { path = "../facilities" }
+fern = "0.6.2"
+chrono = "0.4.30"

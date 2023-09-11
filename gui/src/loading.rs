@@ -35,7 +35,7 @@ pub struct LoadingProps<'a> {
 pub fn Loading<'a>(cx: Scope<'a, LoadingProps<'_>>) -> Element<'a> {
     let loading_stage = use_state(&cx, || LoadingStage::CheckingInternetConnection);
 
-    println!("Loading: {:?}", *loading_stage.get());
+    trace!("Loading: {:?}", *loading_stage.get());
 
     use_future(cx, (loading_stage,), |(loading_stage,)| async move {
         let mut duration: u64 = 0;

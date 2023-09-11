@@ -3,7 +3,7 @@
 use dioxus::prelude::*;
 
 pub fn Home(cx: Scope) -> Element {
-    println!("Home");
+    trace!("Home");
 
     cx.render(rsx!(p {
         "Home"

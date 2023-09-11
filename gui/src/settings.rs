@@ -3,7 +3,7 @@
 use dioxus::prelude::*;
 
 pub fn Settings(cx: Scope) -> Element {
-    println!("Settings");
+    trace!("Settings");
 
     cx.render(rsx!(p {
         "Settings"
