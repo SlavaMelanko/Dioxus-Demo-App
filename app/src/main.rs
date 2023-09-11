@@ -5,14 +5,10 @@ extern crate log;
 
 use dioxus_desktop::{Config, LogicalSize, WindowBuilder};
 
-use gui::{MainWindow, MainWindowProps};
-
-use facilities::setup_logger;
-
 fn main() {
-    setup_logger().expect("Failed to setup logger");
+    facilities::log::init().expect("Failed to setup logger");
 
-    let props = MainWindowProps {};
+    let props = gui::MainWindowProps {};
 
     let config = Config::new().with_window(
         WindowBuilder::default()
@@ -20,5 +16,5 @@ fn main() {
             .with_inner_size(LogicalSize::new(640, 520)),
     );
 
-    dioxus_desktop::launch_with_props(MainWindow, props, config);
+    dioxus_desktop::launch_with_props(gui::MainWindow, props, config);
 }

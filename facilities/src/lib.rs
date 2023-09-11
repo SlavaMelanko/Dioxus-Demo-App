@@ -1,5 +1,7 @@
 extern crate fern;
 
-mod logging;
+mod logger;
 
-pub use crate::logging::setup_logger;
+pub mod log {
+    pub use crate::logger::setup_logger as init;
+}
