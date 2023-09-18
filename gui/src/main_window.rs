@@ -11,7 +11,7 @@ pub struct MainWindowProps {}
 pub fn MainWindow(cx: Scope<MainWindowProps>) -> Element {
     trace!("MainWindow");
 
-    let view_name = use_state(&cx, || ViewName::Loading);
+    let view_name = use_state(&cx, || ViewName::Home);
 
     cx.render(rsx! {
         link { href:"https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap", rel:"stylesheet", }

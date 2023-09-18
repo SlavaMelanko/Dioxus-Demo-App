@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate log;
 
+mod chart;
 mod common;
 mod header;
 mod home;
