@@ -1,42 +1,28 @@
 use dioxus::prelude::*;
 
-use crate::common::ViewName;
-
-use crate::{header::Header, home::Home, loading::Loading, settings::Settings};
+use crate::section::{Body, Footer, Header};
+use crate::{theme::*, view::*};
 
 #[derive(Props, PartialEq, Debug)]
 pub struct MainWindowProps {}
 
 #[allow(non_snake_case)]
 pub fn MainWindow(cx: Scope<MainWindowProps>) -> Element {
-    trace!("MainWindow");
-
-    let view_name = use_state(&cx, || ViewName::Home);
+    use_shared_state_provider(cx, get_default_theme_provider);
+    use_shared_state_provider(cx, get_default_view_name);
 
     cx.render(rsx! {
         link { href:"https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap", rel:"stylesheet", }
-        style { include_str!("../../gui/waviy.css") }
+        style { include_str!("../../gui/style.css") }
 
         Header {
-            title: "Dioxus Demo",
-            view_name: view_name,
+            title: "Dioxus Demo", // TODO: Use config
         }
 
-        match *view_name.current() {
-            ViewName::Loading => rsx! {
-                Loading {
-                    view_name: view_name
-                }
-            },
-            ViewName::Home => rsx! {
-                Home {}
-            },
-            ViewName::Settings => rsx! {
-                Settings {}
-            },
-            _ => rsx! {
-                div{}
-            }
+        Body {}
+
+        Footer {
+            copyright: "Slava Melanko © 2023", // TODO: Use config
         }
     })
 }

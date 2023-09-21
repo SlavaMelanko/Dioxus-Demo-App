@@ -2,11 +2,10 @@
 extern crate log;
 
 mod chart;
-mod common;
-mod header;
-mod home;
-mod loading;
 mod main_window;
-mod settings;
+mod theme;
+
+pub(crate) mod section;
+pub(crate) mod view;
 
 pub use crate::main_window::{MainWindow, MainWindowProps};

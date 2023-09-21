@@ -17,7 +17,7 @@ impl Default for ChartData {
             labels: labels.iter().map(|x| x.to_string()).collect(),
             datasets: vec![ChartDataset {
                 label: "First".into(),
-                data: vec![186, 205, 93, 516, 217, 211, 313, 322, 478, 117],
+                data: vec![55, 125, 90, 220, 410, 250, 310, 290, 102, 117],
                 border_color: "rgb(255, 192, 203)".into(),
                 background_color_top: "rgba(255, 192, 203, 0.75)".into(),
                 background_color_bottom: "rgba(55, 12, 203, 0.1)".into(),

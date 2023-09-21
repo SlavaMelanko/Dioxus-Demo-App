@@ -5,3 +5,7 @@ pub enum ViewName {
     Settings,
     Error,
 }
+
+pub fn get_default_view_name() -> ViewName {
+    ViewName::Loading
+}

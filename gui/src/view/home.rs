@@ -2,7 +2,7 @@ use dioxus::prelude::*;
 
 use crate::chart::ChartData;
 
-const CHART_JS_4_4_0_MIN: &str = include_str!("../chart.js.4.4.0.min.js");
+const CHART_JS_4_4_0_MIN: &str = include_str!("../../chart.js.4.4.0.min.js");
 
 const UTILS_FOR_CHART_JS: &str = r#"
     function getGradient(ctx, chartArea, topColor, bottomColor = "transparent") {
@@ -29,14 +29,10 @@ const UTILS_FOR_CHART_JS: &str = r#"
 "#;
 
 #[allow(non_snake_case)]
-pub(crate) fn Home(cx: Scope) -> Element {
-    trace!("Home");
-
+pub fn Home(cx: Scope) -> Element {
     let eval_provider = use_eval(cx);
-
     let _future = use_future(cx, (), |_| {
         to_owned![eval_provider];
-
         async move {
             let eval = eval_provider(
                 r#"
@@ -67,7 +63,7 @@ pub(crate) fn Home(cx: Scope) -> Element {
     cx.render(rsx! {
         canvas {
             id: "line-chart",
-            width: 620,
+            width: 620, // TODO: Use absolute position?
         }
         script {
             "{CHART_JS_4_4_0_MIN}",
