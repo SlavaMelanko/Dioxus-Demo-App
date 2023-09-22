@@ -7,5 +7,5 @@ pub enum ViewName {
 }
 
 pub fn get_default_view_name() -> ViewName {
-    ViewName::Loading
+    ViewName::Home
 }

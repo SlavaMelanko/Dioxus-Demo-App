@@ -1,4 +1,18 @@
+use rand::Rng;
 use serde::Serialize;
+
+fn random_data<T>(size: usize, low: T, hight: T) -> Vec<T>
+where
+    T: rand::distributions::uniform::SampleUniform + std::cmp::PartialOrd + Copy,
+{
+    let mut rng = rand::thread_rng();
+    let mut data = vec![];
+    for _ in 0..size {
+        data.push(rng.gen_range(low..hight));
+    }
+
+    data
+}
 
 #[derive(Serialize)]
 pub struct ChartData {
@@ -17,10 +31,10 @@ impl Default for ChartData {
             labels: labels.iter().map(|x| x.to_string()).collect(),
             datasets: vec![ChartDataset {
                 label: "First".into(),
-                data: vec![55, 125, 90, 220, 410, 250, 310, 290, 102, 117],
-                border_color: "rgb(255, 192, 203)".into(),
-                background_color_top: "rgba(255, 192, 203, 0.75)".into(),
-                background_color_bottom: "rgba(55, 12, 203, 0.1)".into(),
+                data: random_data(10, 1, 100),
+                border_color: "#f4777f".into(),
+                background_color_top: "#f4777f".into(),
+                background_color_bottom: "transparent".into(),
                 ..Default::default()
             }],
         }

@@ -1,12 +1,31 @@
 use dioxus::prelude::*;
 
-use crate::{theme::*, view::ViewName};
+use crate::theme::*;
 
 const NAV_ICON_JS_SCRIPT: &str = r#"
+    const toggleNavIcon = () => {
+        const navIcon = document.getElementById("nav-icon");
+        navIcon.classList.toggle("open");
+    };
+
+    const toggleSidebar = () => {
+        const modal = document.getElementById("sidebar-menu");
+        modal.style.display = modal.style.display === "block" ? "none" : "block";
+    };
+
     document
         .getElementById("nav-icon")
         .addEventListener("click", function () {
-            this.classList.toggle("open");
+            toggleNavIcon();
+            toggleSidebar();
+
+            window.onclick = function (event) {
+                const modal = document.getElementById("sidebar-menu");
+                if (event.target == modal) {
+                    toggleSidebar();
+                    toggleNavIcon();
+                }
+            };
         });
     "#;
 
@@ -19,8 +38,6 @@ pub struct HeaderProps<'a> {
 pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
     let theme_shared_state = use_shared_state::<Box<dyn Theme>>(cx).unwrap();
     let theme = theme_shared_state.read();
-
-    let view_shared_state = use_shared_state::<ViewName>(cx).unwrap();
 
     cx.render(rsx! {
         div {
@@ -44,14 +61,6 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
             }
             div {
                 id: "nav-icon",
-                onclick: move |_| {
-                    let current_view = *view_shared_state.read();
-                    *view_shared_state.write() = if current_view == ViewName::Home {
-                        ViewName::Settings
-                    } else {
-                        ViewName::Home
-                    };
-                },
                 span {
                     style: "background-color: {theme.text_dark()};",
                 }

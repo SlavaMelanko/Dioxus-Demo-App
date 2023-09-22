@@ -27,6 +27,25 @@ pub fn Body(cx: Scope) -> Element {
                     div{}
                 }
             }
+
+            div {
+                id: "sidebar-menu",
+                class: "modal",
+                style: "display: none;",
+
+                div {
+                    class: "modal-content",
+                    style: "background-color: {theme.back_dark()}; color: {theme.text_light()};",
+                    div {
+                        class: "modal-body",
+                        ul {
+                            li { "1" }
+                            li { "2" }
+                            li { "3" }
+                        }
+                    }
+                }
+            }
         }
     })
 }
