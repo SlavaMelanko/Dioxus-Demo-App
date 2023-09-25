@@ -314,7 +314,7 @@ input:checked + .slider:before {
 }
 
 .modal-body {
-  padding: 0.75rem 2rem;
+  padding: 0.5rem 0.5rem;
 }
 
 @-webkit-keyframes animatetop {
@@ -337,4 +337,21 @@ input:checked + .slider:before {
     right: 0;
     opacity: 1;
   }
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  transition: background-color 0.3s, border-radius 0.3s;
+}
+
+li:hover {
+  background-color: var(--bg-mid);
+  border-radius: 7px;
 }

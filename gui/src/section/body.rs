@@ -39,9 +39,9 @@ pub fn Body(cx: Scope) -> Element {
                     div {
                         class: "modal-body",
                         ul {
-                            li { "1" }
-                            li { "2" }
-                            li { "3" }
+                            li { "About" }
+                            li { "Settings" }
+                            li { "Quit" }
                         }
                     }
                 }
