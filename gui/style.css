@@ -354,4 +354,5 @@ li {
 li:hover {
   background-color: var(--bg-mid);
   border-radius: 7px;
+  cursor: pointer;
 }

@@ -8,6 +8,8 @@ pub fn Body(cx: Scope) -> Element {
     let theme = use_shared_state::<Box<dyn Theme>>(cx).unwrap().read();
     let view_shared_state = use_shared_state::<ViewName>(cx).unwrap();
 
+    let window = dioxus_desktop::use_window(cx);
+
     cx.render(rsx! {
         div {
             class: "body",
@@ -41,7 +43,11 @@ pub fn Body(cx: Scope) -> Element {
                         ul {
                             li { "About" }
                             li { "Settings" }
-                            li { "Quit" }
+                            li { 
+                                onmousedown: |evt| evt.stop_propagation(),
+                                onclick: move |_| window.close(),
+                                "Quit"
+                            }
                         }
                     }
                 }
