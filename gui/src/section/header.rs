@@ -1,6 +1,7 @@
 use dioxus::prelude::*;
 
 use crate::theme::*;
+use crate::view::ViewName;
 
 const NAV_ICON_JS_SCRIPT: &str = r#"
     const toggleNavIcon = () => {
@@ -37,6 +38,8 @@ pub struct HeaderProps<'a> {
 #[allow(non_snake_case)]
 pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
     let theme_shared_state = use_shared_state::<Box<dyn Theme>>(cx).unwrap();
+    let view_shared_state = use_shared_state::<ViewName>(cx).unwrap();
+
     let theme = theme_shared_state.read();
 
     cx.render(rsx! {
@@ -46,6 +49,11 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
 
             div {
                 class: "title",
+
+                onclick: move |_| {
+                    *view_shared_state.write() = ViewName::Home;
+                },
+
                 "{cx.props.title}"
             }
             div {
