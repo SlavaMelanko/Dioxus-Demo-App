@@ -41,8 +41,19 @@ pub fn Body(cx: Scope) -> Element {
                     div {
                         class: "modal-body",
                         ul {
-                            li { "About" }
                             li {
+                                img {
+                                    style: "transform: scaleX(-1);",
+                                    src: "{theme.img_about()}",
+                                }
+
+                                "About"
+                            }
+                            li {
+                                onclick: move |_| {
+                                    *view_shared_state.write() = ViewName::Settings;
+                                },
+
                                 img {
                                     src: "{theme.img_settings()}",
                                 }

@@ -16,6 +16,7 @@ pub trait Theme {
     fn img_theme(&self) -> &str;
     fn img_quit(&self) -> &str;
     fn img_settings(&self) -> &str;
+    fn img_about(&self) -> &str;
 }
 
 pub struct LightTheme {}
@@ -62,6 +63,10 @@ impl Theme for LightTheme {
     fn img_settings(&self) -> &str {
         "gui/img/settings-lt.png"
     }
+
+    fn img_about(&self) -> &str {
+        "gui/img/info-lt.png"
+    }
 }
 
 pub struct DarkTheme {}
@@ -107,6 +112,10 @@ impl Theme for DarkTheme {
 
     fn img_settings(&self) -> &str {
         "gui/img/settings-dt.png"
+    }
+
+    fn img_about(&self) -> &str {
+        "gui/img/info-dt.png"
     }
 }
 
