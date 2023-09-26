@@ -301,10 +301,10 @@ input:checked + .slider:before {
 .modal-content {
   position: fixed;
   padding: 0;
-  width: 10rem;
-  bottom: 2.5rem;
+  width: 12rem;
+  bottom: 2rem;
   right: 1%;
-  top: 4.5rem;
+  top: 4rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
@@ -349,6 +349,12 @@ li {
   align-items: center;
   padding: 0.5rem 1rem 0.5rem 1rem;
   transition: background-color 0.3s, border-radius 0.3s;
+}
+
+li img {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
 }
 
 li:hover {

@@ -42,10 +42,22 @@ pub fn Body(cx: Scope) -> Element {
                         class: "modal-body",
                         ul {
                             li { "About" }
-                            li { "Settings" }
-                            li { 
+                            li {
+                                img {
+                                    src: "{theme.img_settings()}",
+                                }
+
+                                "Settings"
+                            }
+                            li {
                                 onmousedown: |evt| evt.stop_propagation(),
                                 onclick: move |_| window.close(),
+
+                                img {
+                                    style: "transform: scaleX(-1);",
+                                    src: "{theme.img_quit()}",
+                                }
+
                                 "Quit"
                             }
                         }
