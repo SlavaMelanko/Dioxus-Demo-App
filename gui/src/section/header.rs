@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
 
+use crate::component::Title;
 use crate::theme::*;
-use crate::view::ViewName;
 
 const NAV_ICON_JS_SCRIPT: &str = r#"
     const toggleNavIcon = () => {
@@ -19,15 +19,16 @@ const NAV_ICON_JS_SCRIPT: &str = r#"
         .addEventListener("click", function () {
             toggleNavIcon();
             toggleSidebar();
-
-            window.onclick = function (event) {
-                const modal = document.getElementById("sidebar-menu");
-                if (event.target == modal) {
-                    toggleSidebar();
-                    toggleNavIcon();
-                }
-            };
         });
+
+    window.onclick = function (event) {
+        const modal = document.getElementById("sidebar-menu");
+        const settingsItem = document.getElementById("settings-item");
+        if (event.target == modal || event.target == settingsItem) {
+            toggleSidebar();
+            toggleNavIcon();
+        }
+    };
     "#;
 
 #[derive(Props)]
@@ -38,7 +39,6 @@ pub struct HeaderProps<'a> {
 #[allow(non_snake_case)]
 pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
     let theme_shared_state = use_shared_state::<Box<dyn Theme>>(cx).unwrap();
-    let view_shared_state = use_shared_state::<ViewName>(cx).unwrap();
 
     let theme = theme_shared_state.read();
 
@@ -47,15 +47,10 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
             class: "header",
             style: "background-color: {theme.back_dark()}; color: {theme.text_light()};",
 
-            div {
-                class: "title",
-
-                onclick: move |_| {
-                    *view_shared_state.write() = ViewName::Home;
-                },
-
-                "{cx.props.title}"
+            Title {
+                title: cx.props.title,
             }
+
             div {
                 id: "theme-icon",
 
@@ -71,6 +66,7 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
             }
             div {
                 id: "nav-icon",
+
                 span {
                     style: "background-color: {theme.text_dark()};",
                 }
