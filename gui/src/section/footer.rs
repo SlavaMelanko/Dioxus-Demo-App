@@ -14,7 +14,7 @@ pub fn Footer<'a>(cx: Scope<'a, FooterProps<'a>>) -> Element {
     cx.render(rsx! {
         div {
             class: "footer",
-            style: "background-color: {theme.back_dark()}; color: {theme.text_light()};",
+            style: "background-color: {theme.back_dark()}; color: {theme.text_dark()};",
 
             "{cx.props.copyright}"
         }

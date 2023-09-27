@@ -55,6 +55,11 @@ body {
   cursor: pointer;
 }
 
+#theme-icon img {
+  width: 32px;
+  height: 32px;
+}
+
 .body {
   position: fixed;
   top: var(--header-height);

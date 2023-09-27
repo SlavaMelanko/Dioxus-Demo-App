@@ -53,7 +53,7 @@ impl Theme for LightTheme {
     }
 
     fn img_theme(&self) -> &str {
-        "gui/img/moon-32.png"
+        "gui/img/theme-lt-64.png"
     }
 
     fn img_quit(&self) -> &str {
@@ -103,7 +103,7 @@ impl Theme for DarkTheme {
     }
 
     fn img_theme(&self) -> &str {
-        "gui/img/sun-32.png"
+        "gui/img/theme-dt-64.png"
     }
 
     fn img_quit(&self) -> &str {

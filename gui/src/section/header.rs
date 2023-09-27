@@ -58,6 +58,7 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
             }
             div {
                 id: "theme-icon",
+
                 onclick: |_| {
                     let current_theme_id = theme_shared_state.read().id();
                     *theme_shared_state.write() = match current_theme_id {
@@ -65,6 +66,7 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
                         Id::Light => DarkTheme::new(),
                     };
                 },
+
                 img { src: "{theme.img_theme()}" },
             }
             div {
