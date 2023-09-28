@@ -32,7 +32,12 @@ pub fn Sidebar(cx: Scope<SidebarProps>) -> Element {
                         Item {
                             src: "{theme.img_about()}",
                             text: "About",
-                            onclick: move |_| {},
+                            onclick: move |_| {
+                                let url = "https://dioxuslabs.com/"; // TODO: Use config
+                                if let Err(e) = webbrowser::open(url) {
+                                    error!("Failed to open {} via browser: {}", url, e);
+                                }
+                            },
                         }
                         Item {
                             src: "{theme.img_settings()}",

@@ -21,14 +21,16 @@ const NAV_ICON_JS_SCRIPT: &str = r#"
             toggleSidebar();
         });
 
-    window.onclick = function (event) {
-        const modal = document.getElementById("sidebar-menu");
-        const settingsItem = document.getElementById("settings-item");
-        if (event.target == modal || event.target == settingsItem) {
+    window.addEventListener("click", function (event) {
+        const targetId = event.target.id;
+        const modalOverlay = targetId === "sidebar-menu";
+        const anyMenuItem = targetId.includes("-item");
+
+        if (modalOverlay || anyMenuItem) {
             toggleSidebar();
             toggleNavIcon();
         }
-    };
+    });
     "#;
 
 #[derive(Props)]
