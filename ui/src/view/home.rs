@@ -7,8 +7,8 @@ const CHART_JS_4_4_0_MIN: &str = include_str!("../../chart.js.4.4.0.min.js");
 const UTILS_FOR_CHART_JS: &str = r#"
     function getGradient(ctx, chartArea, topColor, bottomColor = "transparent") {
         let gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-        gradient.addColorStop(0.5, topColor);
-        gradient.addColorStop(0, bottomColor);
+        gradient.addColorStop(1, bottomColor);
+        gradient.addColorStop(0, topColor);
         return gradient;
     }
 

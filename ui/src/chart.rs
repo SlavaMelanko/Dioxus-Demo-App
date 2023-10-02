@@ -29,14 +29,24 @@ impl Default for ChartData {
 
         Self {
             labels: labels.iter().map(|x| x.to_string()).collect(),
-            datasets: vec![ChartDataset {
-                label: "First".into(),
-                data: random_data(10, 1, 100),
-                border_color: "#f4777f".into(),
-                background_color_top: "#f4777f".into(),
-                background_color_bottom: "transparent".into(),
-                ..Default::default()
-            }],
+            datasets: vec![
+                ChartDataset {
+                    label: "First".into(),
+                    data: random_data(10, 5, 20),
+                    border_color: "#ffa600".into(),
+                    background_color_top: "#ffa600".into(),
+                    background_color_bottom: "transparent".into(),
+                    ..Default::default()
+                },
+                ChartDataset {
+                    label: "Second".into(),
+                    data: random_data(10, 25, 100),
+                    border_color: "#bc5090".into(),
+                    background_color_top: "#bc5090".into(),
+                    background_color_bottom: "transparent".into(),
+                    ..Default::default()
+                },
+            ],
         }
     }
 }
