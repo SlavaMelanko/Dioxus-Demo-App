@@ -1,4 +1,4 @@
-name: Dioxus Demo - Windows
+name: Windows
 
 on:
   push:
