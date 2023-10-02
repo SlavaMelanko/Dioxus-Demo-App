@@ -8,8 +8,8 @@ pub struct MainWindowProps {}
 
 #[allow(non_snake_case)]
 pub fn MainWindow(cx: Scope<MainWindowProps>) -> Element {
-    use_shared_state_provider(cx, get_default_theme_provider);
-    use_shared_state_provider(cx, get_default_view_name);
+    use_shared_state_provider(cx, get_default_theme);
+    use_shared_state_provider(cx, get_default_view);
 
     cx.render(rsx! {
         link { href:"https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap", rel:"stylesheet", }

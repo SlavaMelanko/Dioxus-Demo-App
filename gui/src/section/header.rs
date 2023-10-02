@@ -40,14 +40,13 @@ pub struct HeaderProps<'a> {
 
 #[allow(non_snake_case)]
 pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
-    let theme_shared_state = use_shared_state::<Box<dyn Theme>>(cx).unwrap();
-
-    let theme = theme_shared_state.read();
+    let theme_state = use_shared_state::<ThemeConfig>(cx).unwrap();
+    let theme = theme_state.read();
 
     cx.render(rsx! {
         div {
             class: "header",
-            style: "background-color: {theme.back_dark()}; color: {theme.text_light()};",
+            style: "background-color: {theme.back.dark}; color: {theme.font.light};",
 
             Title {
                 title: cx.props.title,
@@ -57,26 +56,26 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
                 id: "theme-icon",
 
                 onclick: |_| {
-                    let current_theme_id = theme_shared_state.read().id();
-                    *theme_shared_state.write() = match current_theme_id {
-                        Id::Dark => LightTheme::new(),
-                        Id::Light => DarkTheme::new(),
+                    let id = theme_state.read().id;
+                    *theme_state.write() = match id {
+                        Id::Dark => ThemeConfig::make_light_theme_config(),
+                        Id::Light => ThemeConfig::make_dark_theme_config(),
                     };
                 },
 
-                img { src: "{theme.img_theme()}" },
+                img { src: "{theme.img.theme}" },
             }
             div {
                 id: "nav-icon",
 
                 span {
-                    style: "background-color: {theme.text_dark()};",
+                    style: "background-color: {theme.font.dark};",
                 }
                 span {
-                    style: "background-color: {theme.text_dark()};",
+                    style: "background-color: {theme.font.dark};",
                 }
                 span {
-                    style: "background-color: {theme.text_dark()};",
+                    style: "background-color: {theme.font.dark};",
                 }
             }
         }

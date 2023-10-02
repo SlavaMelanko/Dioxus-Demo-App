@@ -9,12 +9,13 @@ pub struct FooterProps<'a> {
 
 #[allow(non_snake_case)]
 pub fn Footer<'a>(cx: Scope<'a, FooterProps<'a>>) -> Element {
-    let theme = use_shared_state::<Box<dyn Theme>>(cx).unwrap().read();
+    let theme_state = use_shared_state::<ThemeConfig>(cx).unwrap();
+    let theme = theme_state.read();
 
     cx.render(rsx! {
         div {
             class: "footer",
-            style: "background-color: {theme.back_dark()}; color: {theme.text_dark()};",
+            style: "background-color: {theme.back.dark}; color: {theme.font.dark};",
 
             "{cx.props.copyright}"
         }

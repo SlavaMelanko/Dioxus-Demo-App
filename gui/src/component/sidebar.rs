@@ -10,8 +10,10 @@ pub struct SidebarProps {
 
 #[allow(non_snake_case)]
 pub fn Sidebar(cx: Scope<SidebarProps>) -> Element {
-    let theme = use_shared_state::<Box<dyn Theme>>(cx).unwrap().read();
-    let view_shared_state = use_shared_state::<ViewName>(cx).unwrap();
+    let theme_state = use_shared_state::<ThemeConfig>(cx).unwrap();
+    let theme = theme_state.read();
+
+    let view_state = use_shared_state::<ViewName>(cx).unwrap();
 
     let display_value = if cx.props.hidden { "none" } else { "block" };
 
@@ -23,14 +25,14 @@ pub fn Sidebar(cx: Scope<SidebarProps>) -> Element {
 
             div {
                 class: "modal-content",
-                style: "background-color: {theme.back_dark()}; color: {theme.text_light()};",
+                style: "background-color: {theme.back.dark}; color: {theme.font.light};",
 
                 div {
                     class: "modal-body",
 
                     ul {
                         Item {
-                            src: "{theme.img_about()}",
+                            src: "{theme.img.about}",
                             text: "About",
                             onclick: move |_| {
                                 let url = "https://dioxuslabs.com/"; // TODO: Use config
@@ -40,14 +42,14 @@ pub fn Sidebar(cx: Scope<SidebarProps>) -> Element {
                             },
                         }
                         Item {
-                            src: "{theme.img_settings()}",
+                            src: "{theme.img.settings}",
                             text: "Settings",
                             onclick: move |_| {
-                                *view_shared_state.write() = ViewName::Settings;
+                                *view_state.write() = ViewName::Settings;
                             },
                         }
                         Item {
-                            src: "{theme.img_quit()}",
+                            src: "{theme.img.quit}",
                             text: "Quit",
                             onclick: move |_| {
                                 let window = dioxus_desktop::use_window(cx);

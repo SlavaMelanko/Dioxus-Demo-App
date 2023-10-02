@@ -6,6 +6,6 @@ pub enum ViewName {
     Error,
 }
 
-pub fn get_default_view_name() -> ViewName {
-    ViewName::Home
+pub fn get_default_view() -> ViewName {
+    ViewName::Loading
 }

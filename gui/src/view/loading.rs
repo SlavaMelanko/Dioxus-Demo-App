@@ -27,10 +27,10 @@ impl ToString for LoadingStage {
 
 #[allow(non_snake_case)]
 pub fn Loading(cx: Scope) -> Element {
-    let theme_shared_state = use_shared_state::<Box<dyn Theme>>(cx).unwrap();
-    let theme = theme_shared_state.read();
+    let theme_state = use_shared_state::<ThemeConfig>(cx).unwrap();
+    let theme = theme_state.read();
 
-    let view_shared_state = use_shared_state::<ViewName>(cx).unwrap();
+    let view_state = use_shared_state::<ViewName>(cx).unwrap();
 
     let loading_stage = use_state(&cx, || LoadingStage::CheckingInternetConnection);
     trace!("Loading: {:?}", *loading_stage.get());
@@ -63,17 +63,17 @@ pub fn Loading(cx: Scope) -> Element {
 
     // TODO: Doesn't work inside the future closure
     if *loading_stage.get() == LoadingStage::Done {
-        *view_shared_state.write() = ViewName::Home;
+        *view_state.write() = ViewName::Home;
     }
 
     cx.render(rsx! {
         div {
             class: "loading",
-            style: "background-color: {theme.back_light()}; color: {theme.text_light()};",
+            style: "background-color: {theme.back.light}; color: {theme.font.light};",
 
             div {
                 class: "waviy",
-                style: "color: {theme.back_mid()};",
+                style: "color: {theme.back.mid};",
                 get_loading_text().chars().enumerate().map(|(i, l)| rsx!{
                     span { style: "--i:{i};", "{l}"}
                 }),
@@ -85,7 +85,7 @@ pub fn Loading(cx: Scope) -> Element {
                         class: "line",
                         a {
                             class: "lineUp",
-                            style: "color: {theme_shared_state.read().text_light()};",
+                            style: "color: {theme_state.read().font.light};",
                             loading_stage.get().to_string()
                         }
                     })
@@ -95,7 +95,7 @@ pub fn Loading(cx: Scope) -> Element {
                         class: "line",
                         a {
                             class: "lineUp",
-                            style: "color: {theme_shared_state.read().text_light()};",
+                            style: "color: {theme_state.read().font.light};",
                             loading_stage.get().to_string()
                         }
                     })
@@ -105,7 +105,7 @@ pub fn Loading(cx: Scope) -> Element {
                         class: "line",
                         a {
                             class: "lineUp",
-                            style: "color: {theme_shared_state.read().text_light()};",
+                            style: "color: {theme_state.read().font.light};",
                             ""
                         }
                     })

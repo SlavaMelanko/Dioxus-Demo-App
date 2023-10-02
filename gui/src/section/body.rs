@@ -6,15 +6,17 @@ use crate::view::{Home, Loading, Settings, ViewName};
 
 #[allow(non_snake_case)]
 pub fn Body(cx: Scope) -> Element {
-    let theme = use_shared_state::<Box<dyn Theme>>(cx).unwrap().read();
-    let view_shared_state = use_shared_state::<ViewName>(cx).unwrap();
+    let theme_state = use_shared_state::<ThemeConfig>(cx).unwrap();
+    let theme = theme_state.read();
+
+    let view_state = use_shared_state::<ViewName>(cx).unwrap();
 
     cx.render(rsx! {
         div {
             class: "body",
-            style: "background-color: {theme.back_light()}; color: {theme.text_light()};",
+            style: "background-color: {theme.back.light}; color: {theme.font.light};",
 
-            match *view_shared_state.read() {
+            match *view_state.read() {
                 ViewName::Loading => rsx! {
                     Loading {}
                 },
