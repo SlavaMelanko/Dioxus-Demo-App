@@ -34,16 +34,16 @@ impl Default for ChartData {
                     label: "First".into(),
                     data: random_data(10, 5, 20),
                     border_color: "#ffa600".into(),
-                    background_color_top: "#ffa600".into(),
-                    background_color_bottom: "transparent".into(),
+                    background_color_top: "transparent".into(),
+                    background_color_bottom: "#ffa600".into(),
                     ..Default::default()
                 },
                 ChartDataset {
                     label: "Second".into(),
                     data: random_data(10, 25, 100),
                     border_color: "#bc5090".into(),
-                    background_color_top: "#bc5090".into(),
-                    background_color_bottom: "transparent".into(),
+                    background_color_top: "transparent".into(),
+                    background_color_bottom: "#bc5090".into(),
                     ..Default::default()
                 },
             ],
