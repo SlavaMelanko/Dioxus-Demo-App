@@ -43,10 +43,10 @@ impl ThemeConfig {
                 dark: "#b0b3b8",
             },
             img: ImageProvider {
-                theme: "gui/img/theme-l64.png",
-                quit: "gui/img/quit-l32.png",
-                settings: "gui/img/settings-l32.png",
-                about: "gui/img/info-l32.png",
+                theme: "ui/img/theme-l64.png",
+                quit: "ui/img/quit-l32.png",
+                settings: "ui/img/settings-l32.png",
+                about: "ui/img/info-l32.png",
             },
         }
     }
@@ -64,10 +64,10 @@ impl ThemeConfig {
                 dark: "#18191a",
             },
             img: ImageProvider {
-                theme: "gui/img/theme-d64.png",
-                quit: "gui/img/quit-d32.png",
-                settings: "gui/img/settings-d32.png",
-                about: "gui/img/info-d32.png",
+                theme: "ui/img/theme-d64.png",
+                quit: "ui/img/quit-d32.png",
+                settings: "ui/img/settings-d32.png",
+                about: "ui/img/info-d32.png",
             },
         }
     }
@@ -92,10 +92,10 @@ mod tests {
         assert_eq!(theme.back.mid, "#3a3b3c");
         assert_eq!(theme.back.dark, "#18191a");
 
-        assert_eq!(theme.img.theme, "gui/img/theme-d64.png");
-        assert_eq!(theme.img.quit, "gui/img/quit-d32.png");
-        assert_eq!(theme.img.settings, "gui/img/settings-d32.png");
-        assert_eq!(theme.img.about, "gui/img/info-d32.png");
+        assert_eq!(theme.img.theme, "ui/img/theme-d64.png");
+        assert_eq!(theme.img.quit, "ui/img/quit-d32.png");
+        assert_eq!(theme.img.settings, "ui/img/settings-d32.png");
+        assert_eq!(theme.img.about, "ui/img/info-d32.png");
     }
 
     #[test]
@@ -109,9 +109,9 @@ mod tests {
         assert_eq!(theme.back.mid, "#3a3b3c");
         assert_eq!(theme.back.dark, "#b0b3b8");
 
-        assert_eq!(theme.img.theme, "gui/img/theme-l64.png");
-        assert_eq!(theme.img.quit, "gui/img/quit-l32.png");
-        assert_eq!(theme.img.settings, "gui/img/settings-l32.png");
-        assert_eq!(theme.img.about, "gui/img/info-l32.png");
+        assert_eq!(theme.img.theme, "ui/img/theme-l64.png");
+        assert_eq!(theme.img.quit, "ui/img/quit-l32.png");
+        assert_eq!(theme.img.settings, "ui/img/settings-l32.png");
+        assert_eq!(theme.img.about, "ui/img/info-l32.png");
     }
 }

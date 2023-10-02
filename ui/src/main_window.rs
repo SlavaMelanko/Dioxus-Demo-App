@@ -13,7 +13,7 @@ pub fn MainWindow(cx: Scope<MainWindowProps>) -> Element {
 
     cx.render(rsx! {
         link { href:"https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap", rel:"stylesheet", }
-        style { include_str!("../../gui/style.css") }
+        style { include_str!("../../ui/style.css") }
 
         Header {
             title: "Dioxus Demo", // TODO: Use config
