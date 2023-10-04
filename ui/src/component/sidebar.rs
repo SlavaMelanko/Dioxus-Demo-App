@@ -27,35 +27,31 @@ pub fn Sidebar(cx: Scope<SidebarProps>) -> Element {
                 class: "modal-content",
                 style: "background-color: {theme.back.dark}; color: {theme.font.light};",
 
-                div {
-                    class: "modal-body",
-
-                    ul {
-                        Item {
-                            src: "{theme.img.about}",
-                            text: "About",
-                            onclick: move |_| {
-                                let url = "https://dioxuslabs.com/"; // TODO: Use config
-                                if let Err(e) = webbrowser::open(url) {
-                                    error!("Failed to open {} via browser: {}", url, e);
-                                }
-                            },
-                        }
-                        Item {
-                            src: "{theme.img.settings}",
-                            text: "Settings",
-                            onclick: move |_| {
-                                *view_state.write() = ViewName::Settings;
-                            },
-                        }
-                        Item {
-                            src: "{theme.img.quit}",
-                            text: "Quit",
-                            onclick: move |_| {
-                                let window = dioxus_desktop::use_window(cx);
-                                window.close()
-                            },
-                        }
+                ul {
+                    Item {
+                        src: "{theme.img.about}",
+                        text: "About",
+                        onclick: move |_| {
+                            let url = "https://dioxuslabs.com/"; // TODO: Use config
+                            if let Err(e) = webbrowser::open(url) {
+                                error!("Failed to open {} via browser: {}", url, e);
+                            }
+                        },
+                    }
+                    Item {
+                        src: "{theme.img.settings}",
+                        text: "Settings",
+                        onclick: move |_| {
+                            *view_state.write() = ViewName::Settings;
+                        },
+                    }
+                    Item {
+                        src: "{theme.img.quit}",
+                        text: "Quit",
+                        onclick: move |_| {
+                            let window = dioxus_desktop::use_window(cx);
+                            window.close()
+                        },
                     }
                 }
             }

@@ -308,17 +308,13 @@ input:checked + .slider:before {
   right: 1%;
   bottom: 2rem;
   width: 12rem;
-  padding: 0;
+  padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.3s;
   animation-name: animatetop;
   animation-duration: 0.3s;
-}
-
-.modal-body {
-  padding: 0.5rem 0.5rem;
 }
 
 @-webkit-keyframes animatetop {
