@@ -312,30 +312,30 @@ input:checked + .slider:before {
   border-radius: 0.5rem;
   box-shadow: -10px 10px 10px 0 rgba(0, 0, 0, 0.2),
     0 5px 20px 0 rgba(0, 0, 0, 0.2);
-  -webkit-animation-name: animatetop;
+  -webkit-animation-name: slidein;
   -webkit-animation-duration: 0.3s;
-  animation-name: animatetop;
+  animation-name: slidein;
   animation-duration: 0.3s;
 }
 
-@-webkit-keyframes animatetop {
+@-webkit-keyframes slidein {
   from {
-    right: -200px;
+    right: -12rem;
     opacity: 0;
   }
   to {
-    right: 0;
+    right: 1%;
     opacity: 1;
   }
 }
 
-@keyframes animatetop {
+@keyframes slidein {
   from {
-    right: -200px;
+    right: -12rem;
     opacity: 0;
   }
   to {
-    right: 0;
+    right: 1%;
     opacity: 1;
   }
 }
