@@ -310,7 +310,8 @@ input:checked + .slider:before {
   width: 12rem;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: -10px 10px 10px 0 rgba(0, 0, 0, 0.2),
+    0 5px 20px 0 rgba(0, 0, 0, 0.2);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.3s;
   animation-name: animatetop;
