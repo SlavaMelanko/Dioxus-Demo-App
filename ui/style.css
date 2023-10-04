@@ -17,7 +17,7 @@ body {
   color: #242526;
 
   --header-height: 48px;
-  --footer-height: 20px;
+  --footer-height: 24px;
 
   display: flex;
   justify-content: center;
@@ -306,7 +306,7 @@ input:checked + .slider:before {
   position: fixed;
   top: 4rem;
   right: 1%;
-  bottom: 2rem;
+  bottom: 2.5rem;
   width: 12rem;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
