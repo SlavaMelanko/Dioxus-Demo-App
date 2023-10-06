@@ -29,6 +29,9 @@ pub struct ThemeConfig {
     pub img: ImageProvider,
 }
 
+/*
+    https://www.color-hex.com/color-palette/99155
+*/
 impl ThemeConfig {
     pub fn make_light_theme_config() -> Self {
         ThemeConfig {
