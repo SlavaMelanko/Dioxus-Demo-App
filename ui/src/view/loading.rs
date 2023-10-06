@@ -78,7 +78,7 @@ pub fn Loading(cx: Scope) -> Element {
                     span { style: "--i:{i};", "{l}"}
                 }),
             }
-            // In order to make the animation work, we need to render the text using a new element each time
+            // To see an animation, we need to render the text using a new element each time
             match loading_stage.get() {
                 LoadingStage::CheckingInternetConnection | LoadingStage::CheckingForUpdates => {
                     rsx!(div {
