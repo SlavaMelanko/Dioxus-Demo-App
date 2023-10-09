@@ -47,9 +47,9 @@ impl ThemeConfig {
             },
             img: ImageProvider {
                 theme: "ui/img/theme-l64.png",
-                quit: "ui/img/quit-l32.png",
-                settings: "ui/img/settings-l32.png",
-                about: "ui/img/info-l32.png",
+                quit: "ui/img/quit-l36.png",
+                settings: "ui/img/settings-l36.png",
+                about: "ui/img/info-l36.png",
             },
         }
     }
@@ -68,9 +68,9 @@ impl ThemeConfig {
             },
             img: ImageProvider {
                 theme: "ui/img/theme-d64.png",
-                quit: "ui/img/quit-d32.png",
-                settings: "ui/img/settings-d32.png",
-                about: "ui/img/info-d32.png",
+                quit: "ui/img/quit-d36.png",
+                settings: "ui/img/settings-d36.png",
+                about: "ui/img/info-d36.png",
             },
         }
     }
