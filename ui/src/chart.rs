@@ -94,7 +94,7 @@ impl Default for ChartDataset {
             data: vec![],
 
             border_color: "rgba(0, 0, 0, 1)".into(),
-            border_width: 2,
+            border_width: 1,
             pointer_radius: 0,
 
             background_color: "rgba(0, 0, 0, 0.33)".into(),
