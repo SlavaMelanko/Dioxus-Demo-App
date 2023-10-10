@@ -96,9 +96,9 @@ mod tests {
         assert_eq!(theme.back.dark, "#18191a");
 
         assert_eq!(theme.img.theme, "ui/img/theme-d64.png");
-        assert_eq!(theme.img.quit, "ui/img/quit-d32.png");
-        assert_eq!(theme.img.settings, "ui/img/settings-d32.png");
-        assert_eq!(theme.img.about, "ui/img/info-d32.png");
+        assert_eq!(theme.img.quit, "ui/img/quit-d36.png");
+        assert_eq!(theme.img.settings, "ui/img/settings-d36.png");
+        assert_eq!(theme.img.about, "ui/img/info-d36.png");
     }
 
     #[test]
@@ -113,8 +113,8 @@ mod tests {
         assert_eq!(theme.back.dark, "#b0b3b8");
 
         assert_eq!(theme.img.theme, "ui/img/theme-l64.png");
-        assert_eq!(theme.img.quit, "ui/img/quit-l32.png");
-        assert_eq!(theme.img.settings, "ui/img/settings-l32.png");
-        assert_eq!(theme.img.about, "ui/img/info-l32.png");
+        assert_eq!(theme.img.quit, "ui/img/quit-l36.png");
+        assert_eq!(theme.img.settings, "ui/img/settings-l36.png");
+        assert_eq!(theme.img.about, "ui/img/info-l36.png");
     }
 }
