@@ -4,6 +4,34 @@ use crate::component::Title;
 use crate::theme::*;
 
 const NAV_ICON_JS_SCRIPT: &str = r#"
+    const theme = {
+        value: "dark",
+    };
+
+    const setPreference = () => {
+        document.firstElementChild.setAttribute("data-theme", theme.value);
+    };
+
+    // set early so no page flashes / CSS is made aware
+    setPreference();
+
+    const onClick = () => {
+        theme.value = theme.value === "light" ? "dark" : "light";
+        setPreference();
+    };
+
+    // now this script can find and listen for clicks on the control
+    document.getElementById("theme-toggle").addEventListener("click", onClick);
+
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", ({ matches: isDark }) => {
+            theme.value = isDark ? "dark" : "light";
+            setPreference();
+        });
+
+    // ---
+
     const toggleNavIcon = () => {
         const navIcon = document.getElementById("nav-icon");
         navIcon.classList.toggle("open");
@@ -50,6 +78,106 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
 
             Title {
                 title: cx.props.title,
+            }
+
+            button {
+                class: "theme-toggle",
+                id: "theme-toggle",
+
+                onclick: |_| {
+                    let id = theme_state.read().id;
+                    *theme_state.write() = match id {
+                        Id::Dark => ThemeConfig::make_light_theme_config(),
+                        Id::Light => ThemeConfig::make_dark_theme_config(),
+                    };
+                },
+
+                svg {
+                    class: "sun-and-moon",
+                    width: "24",
+                    height: "24",
+                    "viewBox": "0 0 24 24",
+
+                    mask {
+                        class: "moon",
+                        id: "moon-mask",
+
+                        rect {
+                            x: "0",
+                            y: "0",
+                            width: "100%",
+                            height: "100%",
+                            fill: "white",
+                        }
+                        circle {
+                            cx: "24",
+                            cy: "10",
+                            r: "6",
+                            fill: "black",
+                        }
+                    }
+                    circle {
+                        class: "sun",
+                        cx: "12",
+                        cy: "12",
+                        r: "6",
+                        mask: "url(#moon-mask)",
+                        fill: "currentColor",
+                    }
+                    g {
+                        class: "sun-beams",
+                        stroke: "currentColor",
+
+                        line {
+                            x1: "12",
+                            y1: "1",
+                            x2: "12",
+                            y2: "3",
+                        },
+                        line {
+                            x1: "12",
+                            y1: "21",
+                            x2: "12",
+                            y2: "23",
+                        },
+                        line {
+                            x1: "4.22",
+                            y1: "4.22",
+                            x2: "5.64",
+                            y2: "5.64",
+                        },
+                        line {
+                            x1: "18.36",
+                            y1: "18.36",
+                            x2: "19.78",
+                            y2: "19.78",
+                        },
+                        line {
+                            x1: "1",
+                            y1: "12",
+                            x2: "3",
+                            y2: "12",
+                        },
+                        line {
+                            x1: "21",
+                            y1: "12",
+                            x2: "23",
+                            y2: "12",
+                        },
+                        line {
+                            x1: "4.22",
+                            y1: "19.78",
+                            x2: "5.64",
+                            y2: "18.36",
+                        },
+                        line {
+                            x1: "18.36",
+                            y1: "5.64",
+                            x2: "19.78",
+                            y2: "4.22",
+                        },
+                    }
+                }
             }
 
             div {
