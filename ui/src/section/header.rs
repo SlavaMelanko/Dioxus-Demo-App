@@ -4,34 +4,6 @@ use crate::component::Title;
 use crate::theme::*;
 
 const NAV_ICON_JS_SCRIPT: &str = r#"
-    const theme = {
-        value: "dark",
-    };
-
-    const setPreference = () => {
-        document.firstElementChild.setAttribute("data-theme", theme.value);
-    };
-
-    // set early so no page flashes / CSS is made aware
-    setPreference();
-
-    const onClick = () => {
-        theme.value = theme.value === "light" ? "dark" : "light";
-        setPreference();
-    };
-
-    // now this script can find and listen for clicks on the control
-    document.getElementById("theme-toggle").addEventListener("click", onClick);
-
-    window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", ({ matches: isDark }) => {
-            theme.value = isDark ? "dark" : "light";
-            setPreference();
-        });
-
-    // ---
-
     const toggleNavIcon = () => {
         const navIcon = document.getElementById("nav-icon");
         navIcon.classList.toggle("open");
@@ -59,6 +31,34 @@ const NAV_ICON_JS_SCRIPT: &str = r#"
             toggleNavIcon();
         }
     });
+    "#;
+
+const THEME_ICON_JS_SCRIPT: &str = r#"
+    const theme = {
+        value: "dark",
+    };
+
+    const setPreference = () => {
+        document.firstElementChild.setAttribute("data-theme", theme.value);
+    };
+
+    // set early so no page flashes / CSS is made aware
+    setPreference();
+
+    const onClick = () => {
+        theme.value = theme.value === "light" ? "dark" : "light";
+        setPreference();
+    };
+
+    // now this script can find and listen for clicks on the control
+    document.getElementById("theme-toggle").addEventListener("click", onClick);
+
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", ({ matches: isDark }) => {
+            theme.value = isDark ? "dark" : "light";
+            setPreference();
+        });
     "#;
 
 #[derive(Props)]
@@ -209,6 +209,9 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
         }
         script {
             "{NAV_ICON_JS_SCRIPT}"
+        }
+        script {
+            "{THEME_ICON_JS_SCRIPT}"
         }
     })
 }
