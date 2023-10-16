@@ -184,7 +184,7 @@ body {
 }
 
 #nav-icon span:nth-child(1) {
-  top: 0px;
+  top: 2px;
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -192,7 +192,7 @@ body {
 }
 
 #nav-icon span:nth-child(2) {
-  top: 12px;
+  top: 14px;
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -200,7 +200,7 @@ body {
 }
 
 #nav-icon span:nth-child(3) {
-  top: 24px;
+  top: 26px;
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -212,8 +212,8 @@ body {
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  top: -2px;
-  left: 5px;
+  top: 0px;
+  left: 4px;
 }
 
 #nav-icon.open span:nth-child(2) {
@@ -226,8 +226,8 @@ body {
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  top: 26px;
-  left: 5px;
+  top: 28px;
+  left: 4px;
 }
 
 .modal-overlay {
