@@ -58,17 +58,6 @@ body {
   cursor: pointer;
 }
 
-#theme-icon {
-  position: absolute;
-  right: 4.5rem;
-  cursor: pointer;
-}
-
-#theme-icon img {
-  width: 32px;
-  height: 32px;
-}
-
 .body {
   position: fixed;
   top: var(--header-height);
@@ -324,6 +313,8 @@ html[data-theme="dark"] {
   --size: 2rem;
   --icon-fill: #18191a;
   --icon-fill-hover: #000;
+  position: absolute;
+  right: 4.5rem;
   background: none;
   border: none;
   padding: 0;

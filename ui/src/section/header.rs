@@ -34,29 +34,26 @@ const NAV_ICON_JS_SCRIPT: &str = r#"
     "#;
 
 const THEME_ICON_JS_SCRIPT: &str = r#"
-    const theme = {
+    const themeConfig = {
         value: "dark",
     };
 
     const setPreference = () => {
-        document.firstElementChild.setAttribute("data-theme", theme.value);
+        document.firstElementChild.setAttribute("data-theme", themeConfig.value);
     };
 
-    // set early so no page flashes / CSS is made aware
-    setPreference();
-
-    const onClick = () => {
-        theme.value = theme.value === "light" ? "dark" : "light";
+    const handleThemeSwitchClicked = () => {
+        themeConfig.value = themeConfig.value === "light" ? "dark" : "light";
         setPreference();
     };
 
     // now this script can find and listen for clicks on the control
-    document.getElementById("theme-toggle").addEventListener("click", onClick);
+    document.getElementById("theme-toggle").addEventListener("click", handleThemeSwitchClicked);
 
     window
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", ({ matches: isDark }) => {
-            theme.value = isDark ? "dark" : "light";
+            themeConfig.value = isDark ? "dark" : "light";
             setPreference();
         });
     "#;
@@ -70,6 +67,22 @@ pub struct HeaderProps<'a> {
 pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
     let theme_state = use_shared_state::<ThemeConfig>(cx).unwrap();
     let theme = theme_state.read();
+
+    let eval_provider = use_eval(cx);
+    let _future = use_future(cx, (), |_| {
+        to_owned![eval_provider];
+        async move {
+            let eval = eval_provider(
+                r#"
+                themeConfig.value = await dioxus.recv();
+                setPreference();
+            "#,
+            )
+            .unwrap();
+
+            eval.send("dark".into()).unwrap();
+        }
+    });
 
     cx.render(rsx! {
         div {
@@ -180,19 +193,6 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
                 }
             }
 
-            div {
-                id: "theme-icon",
-
-                onclick: |_| {
-                    let id = theme_state.read().id;
-                    *theme_state.write() = match id {
-                        Id::Dark => ThemeConfig::make_light_theme_config(),
-                        Id::Light => ThemeConfig::make_dark_theme_config(),
-                    };
-                },
-
-                img { src: "{theme.img.theme}" },
-            }
             div {
                 id: "nav-icon",
 
