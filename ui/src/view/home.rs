@@ -4,7 +4,7 @@ use crate::chart::ChartData;
 
 const CHART_JS_4_4_0_MIN: &str = include_str!("../../chart.js.4.4.0.min.js");
 
-const UTILS_FOR_CHART_JS: &str = r#"
+const CHART_JS_UTILS: &str = r#"
     function getGradient(ctx, chartArea, topColor, bottomColor = "transparent") {
         let gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
         gradient.addColorStop(1, topColor);
@@ -31,7 +31,7 @@ const UTILS_FOR_CHART_JS: &str = r#"
 #[allow(non_snake_case)]
 pub fn Home(cx: Scope) -> Element {
     let eval_provider = use_eval(cx);
-    let _future = use_future(cx, (), |_| {
+    use_effect(cx, (), |_| {
         to_owned![eval_provider];
         async move {
             let eval = eval_provider(
@@ -69,7 +69,7 @@ pub fn Home(cx: Scope) -> Element {
             "{CHART_JS_4_4_0_MIN}",
         }
         script {
-            "{UTILS_FOR_CHART_JS}",
+            "{CHART_JS_UTILS}",
         }
     })
 }

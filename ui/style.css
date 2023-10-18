@@ -1,31 +1,40 @@
+:root {
+  /* from https://unpkg.com/open-props@1.6.5/easings.min.css */
+  --ease-3: cubic-bezier(0.25, 0, 0.3, 1);
+  --ease-out-5: cubic-bezier(0, 0, 0, 1);
+  --ease-elastic-out-3: cubic-bezier(0.5, 1.25, 0.75, 1.25);
+  --ease-elastic-out-4: cubic-bezier(0.5, 1.5, 0.75, 1.25);
+  --ease-elastic-3: var(--ease-elastic-out-3);
+  --ease-elastic-4: var(--ease-elastic-out-4);
+
+  --text-light: #e4e6eb;
+  --text-dark: #b0b3b8;
+
+  --bg-light: #242526;
+  --bg-mid: #3a3b3c;
+  --bg-dark: #18191a;
+
+  --header-height: 48px;
+  --footer-height: 24px;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-weight: 300;
 }
 
 body {
-  --text-light: #242526;
-  --text-dark: #18191a;
-
-  --bg-mid: #3a3b3c;
-  --bg-dark: #b0b3b8;
-  --bg-light: #e4e6eb;
-
   background-color: var(--bg-light);
   color: var(--text-light);
-
-  --header-height: 48px;
-  --footer-height: 24px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 
   font-family: "Signika Negative", sans-serif;
   font-size: 16px;
+  font-weight: 300;
 }
 
 .header {
@@ -47,17 +56,6 @@ body {
   position: absolute;
   left: 1rem;
   cursor: pointer;
-}
-
-#theme-icon {
-  position: absolute;
-  right: 4.5rem;
-  cursor: pointer;
-}
-
-#theme-icon img {
-  width: 32px;
-  height: 32px;
 }
 
 .body {
@@ -186,7 +184,7 @@ body {
 }
 
 #nav-icon span:nth-child(1) {
-  top: 0px;
+  top: 2px;
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -194,7 +192,7 @@ body {
 }
 
 #nav-icon span:nth-child(2) {
-  top: 12px;
+  top: 14px;
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -202,7 +200,7 @@ body {
 }
 
 #nav-icon span:nth-child(3) {
-  top: 24px;
+  top: 26px;
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -214,8 +212,8 @@ body {
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  top: -2px;
-  left: 5px;
+  top: 0px;
+  left: 4px;
 }
 
 #nav-icon.open span:nth-child(2) {
@@ -228,67 +226,8 @@ body {
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  top: 26px;
-  left: 5px;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 29px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 25px;
-  width: 25px;
-  left: 3px;
-  bottom: 2px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: #86d993;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #86d993;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(20px);
-  -ms-transform: translateX(20px);
-  transform: translateX(20px);
-}
-
-.slider.round {
-  border-radius: 30px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+  top: 28px;
+  left: 4px;
 }
 
 .modal-overlay {
@@ -337,26 +276,135 @@ input:checked + .slider:before {
   }
 }
 
-ul {
+.modal-overlay ul {
   list-style: none;
   margin: 0;
 }
 
-li {
+.modal-overlay li {
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem 0.5rem 1rem;
   transition: background-color 0.3s, border-radius 0.3s;
 }
 
-li img {
+.modal-overlay li img {
   width: 18px;
   height: 18px;
   margin-right: 10px;
 }
 
-li:hover {
+.modal-overlay li:hover {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   cursor: pointer;
+}
+
+html {
+  block-size: 100%;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+.theme-toggle {
+  --size: 2rem;
+  --icon-fill: #18191a;
+  --icon-fill-hover: #000;
+  position: absolute;
+  right: 4.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  inline-size: var(--size);
+  block-size: var(--size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 5px;
+}
+
+.theme-toggle > svg {
+  inline-size: 100%;
+  block-size: 100%;
+  stroke-linecap: round;
+}
+
+[data-theme="dark"] .theme-toggle {
+  --icon-fill: #b0b3b8;
+  --icon-fill-hover: #fff;
+}
+
+@media (hover: none) {
+  .theme-toggle {
+    --size: 48px;
+  }
+}
+
+.sun-and-moon > :is(.moon, .sun, .sun-beams) {
+  transform-origin: center center;
+}
+.sun-and-moon > :is(.moon, .sun) {
+  fill: var(--icon-fill);
+}
+.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
+  fill: var(--icon-fill-hover);
+}
+.sun-and-moon > .sun-beams {
+  stroke: var(--icon-fill);
+  stroke-width: 2px;
+}
+.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
+  stroke: var(--icon-fill-hover);
+}
+
+[data-theme="dark"] .sun-and-moon > .sun {
+  transform: scale(1.75);
+}
+[data-theme="dark"] .sun-and-moon > .sun-beams {
+  opacity: 0;
+}
+[data-theme="dark"] .sun-and-moon > .moon > circle {
+  transform: translate(-7px);
+}
+
+@supports (cx: 1) {
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    transform: translate(0);
+    cx: 17;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sun-and-moon > .sun {
+    transition: transform 0.5s var(--ease-elastic-3);
+  }
+  .sun-and-moon > .sun-beams {
+    transition: transform 0.5s var(--ease-elastic-4), opacity 0.5s var(--ease-3);
+  }
+  .sun-and-moon .moon > circle {
+    transition: transform 0.25s var(--ease-out-5);
+  }
+  @supports (cx: 1) {
+    .sun-and-moon .moon > circle {
+      transition: cx 0.25s var(--ease-out-5);
+    }
+  }
+  [data-theme="dark"] .sun-and-moon > .sun {
+    transform: scale(1.75);
+    transition-timing-function: var(--ease-3);
+    transition-duration: 0.25s;
+  }
+  [data-theme="dark"] .sun-and-moon > .sun-beams {
+    transform: rotate(-25deg);
+    transition-duration: 0.15s;
+  }
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    transition-delay: 0.25s;
+    transition-duration: 0.5s;
+  }
 }

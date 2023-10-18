@@ -4,6 +4,16 @@ pub enum Id {
     Dark,
 }
 
+impl Id {
+    pub fn to_string(&self) -> String {
+        match self {
+            Id::Light => "light",
+            Id::Dark => "dark",
+        }
+        .to_string()
+    }
+}
+
 pub struct FontColorPalette {
     pub light: &'static str,
     pub dark: &'static str,

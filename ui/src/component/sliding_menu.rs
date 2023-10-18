@@ -3,13 +3,13 @@ use dioxus::prelude::*;
 use crate::theme::*;
 use crate::view::ViewName;
 
-#[derive(Props, PartialEq, Debug)]
-pub struct SidebarProps {
+#[derive(Props, PartialEq)]
+pub struct SlidingMenuProps {
     pub hidden: bool,
 }
 
 #[allow(non_snake_case)]
-pub fn Sidebar(cx: Scope<SidebarProps>) -> Element {
+pub fn SlidingMenu(cx: Scope<SlidingMenuProps>) -> Element {
     let theme_state = use_shared_state::<ThemeConfig>(cx).unwrap();
     let theme = theme_state.read();
 
