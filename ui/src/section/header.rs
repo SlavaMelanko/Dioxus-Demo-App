@@ -1,5 +1,7 @@
 use dioxus::prelude::*;
 
+use serde_json::json;
+
 use crate::component::Title;
 use crate::theme::*;
 
@@ -34,7 +36,7 @@ const NAV_ICON_JS_SCRIPT: &str = r#"
     "#;
 
 const THEME_ICON_JS_SCRIPT: &str = r#"
-    const themeConfig = {
+    let themeConfig = {
         value: "dark",
     };
 
@@ -69,18 +71,19 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
     let theme = theme_state.read();
 
     let eval_provider = use_eval(cx);
-    let _future = use_future(cx, (), |_| {
-        to_owned![eval_provider];
+    let themeVal = theme.id.to_string();
+    use_effect(cx, (), move |_| {
+        to_owned![eval_provider, themeVal];
         async move {
             let eval = eval_provider(
                 r#"
-                themeConfig.value = await dioxus.recv();
-                setPreference();
-            "#,
+                    themeConfig = await dioxus.recv();
+                    setPreference();
+                "#,
             )
             .unwrap();
 
-            eval.send("dark".into()).unwrap();
+            eval.send(json!({"value": themeVal})).unwrap();
         }
     });
 
