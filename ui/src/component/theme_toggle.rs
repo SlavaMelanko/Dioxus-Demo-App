@@ -4,7 +4,7 @@ use serde_json::json;
 
 use crate::theme::*;
 
-const THEME_TOGGLE_JS_SCRIPT: &str = r#"
+const JS_SCRIPT: &str = r#"
     let themeConfig = {
         value: "dark",
     };
@@ -153,7 +153,7 @@ pub fn ThemeToggle(cx: Scope) -> Element {
             }
         }
         script {
-            "{THEME_TOGGLE_JS_SCRIPT}"
+            "{JS_SCRIPT}"
         }
     })
 }
