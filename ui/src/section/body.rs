@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-use crate::component::Sidebar;
+use crate::component::SlidingMenu;
 use crate::theme::*;
 use crate::view::{Home, Loading, Settings, ViewName};
 
@@ -31,7 +31,7 @@ pub fn Body(cx: Scope) -> Element {
                 }
             }
 
-            Sidebar {
+            SlidingMenu {
                 hidden: true,
             }
         }
