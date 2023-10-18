@@ -3,31 +3,31 @@ use dioxus::prelude::*;
 use crate::theme::*;
 
 const JS_SCRIPT: &str = r#"
-    const toggleNavIcon = () => {
+    const toggHamburgerIcon = () => {
         const navIcon = document.getElementById("nav-icon");
         navIcon.classList.toggle("open");
     };
 
-    const toggleSidebar = () => {
-        const modal = document.getElementById("sidebar-menu");
+    const toggleSlidingMenu = () => {
+        const modal = document.getElementById("sliding-menu");
         modal.style.display = modal.style.display === "block" ? "none" : "block";
     };
 
     document
         .getElementById("nav-icon")
         .addEventListener("click", function () {
-            toggleNavIcon();
-            toggleSidebar();
+            toggHamburgerIcon();
+            toggleSlidingMenu();
         });
 
     window.addEventListener("click", function (event) {
         const targetId = event.target.id;
-        const modalOverlay = targetId === "sidebar-menu";
+        const modalOverlay = targetId === "sliding-menu";
         const anyMenuItem = targetId.includes("-item");
 
         if (modalOverlay || anyMenuItem) {
-            toggleSidebar();
-            toggleNavIcon();
+            toggleSlidingMenu();
+            toggHamburgerIcon();
         }
     });
 "#;

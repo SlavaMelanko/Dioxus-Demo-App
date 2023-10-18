@@ -19,7 +19,7 @@ pub fn SlidingMenu(cx: Scope<SlidingMenuProps>) -> Element {
 
     cx.render(rsx! {
         div {
-            id: "sidebar-menu",
+            id: "sliding-menu",
             class: "modal-overlay",
             style: "display: {display_value};",
 
