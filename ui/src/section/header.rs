@@ -71,9 +71,9 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
     let theme = theme_state.read();
 
     let eval_provider = use_eval(cx);
-    let themeVal = theme.id.to_string();
+    let theme_mode = theme.id.to_string();
     use_effect(cx, (), move |_| {
-        to_owned![eval_provider, themeVal];
+        to_owned![eval_provider, theme_mode];
         async move {
             let eval = eval_provider(
                 r#"
@@ -83,7 +83,7 @@ pub fn Header<'a>(cx: Scope<'a, HeaderProps<'a>>) -> Element {
             )
             .unwrap();
 
-            eval.send(json!({"value": themeVal})).unwrap();
+            eval.send(json!({"value": theme_mode})).unwrap();
         }
     });
 
