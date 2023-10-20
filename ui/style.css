@@ -312,7 +312,7 @@ html[data-theme="dark"] {
 .theme-toggle {
   --size: 2rem;
   --icon-fill: #18191a;
-  --icon-fill-hover: #3a3b3c;
+  --icon-fill-hover: #18191a;
   position: absolute;
   right: 4.5rem;
   background: none;
@@ -336,7 +336,7 @@ html[data-theme="dark"] {
 
 [data-theme="dark"] .theme-toggle {
   --icon-fill: #b0b3b8;
-  --icon-fill-hover: #e4e6eb;
+  --icon-fill-hover: #b0b3b8;
 }
 
 @media (hover: none) {
