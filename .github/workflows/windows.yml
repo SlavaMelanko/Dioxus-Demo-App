@@ -22,4 +22,7 @@ jobs:
         run: cargo test --verbose
 
       - name: Check github var
-        run: echo ${{ fromJson(github) }}
+        run: echo "${{ toJSON(github) }}"
+
+      - name: Check runner var
+        run: echo "${{ toJSON(runner) }}"
